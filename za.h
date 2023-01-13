@@ -1,12 +1,15 @@
+#ifndef ZA_H
+#define ZA_H
+
+#include <string>
 #include "parcelle.h"
 
-class za_t : Parcelle_t{
+class za_t : public Parcelle_t{
 private:
-    
+    std::string typeCulture;
 public:
-    za_t();
+    za_t(int, std::string, Polygone_t<int>, std::string);
+    void setType();
 };
 
-za_t::za_t()
-{
-}
+#endif

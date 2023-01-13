@@ -6,11 +6,11 @@
 
 class Parcelle_t {
 protected:
-    std::string type;
+    typeParcelle type;
     int numero;
     std::string proprio;
-    float surface;
     Polygone_t<int> forme;
+    int pConstructible; 
 public:
     // constructors
     Parcelle_t(int, std::string, Polygone_t<int>);
@@ -19,18 +19,17 @@ public:
     // getters
     int getNumero()             {return numero;}
     std::string getProprio()    {return proprio;}
-    float getSurface()          {return surface;}
     Polygone_t<int> getForme()  {return forme;}
-    std::string getType()       {return type;}
+    typeParcelle getType()       {return type;}
 
     // setters
     void setNumero(int num) {numero = num;}
     void setProprio(std::string prop) {proprio = prop;}
-    void setForme(Polygone_t<int> f) {forme = f;}
-    virtual void setType(std::string t) = 0;
+    void setForme(Polygone_t<int>);
+    virtual void setType() = 0;
 };
 
-enum typePacelle {
+enum typeParcelle {
     urbaine,
     aUrbaniser,
     agricole,

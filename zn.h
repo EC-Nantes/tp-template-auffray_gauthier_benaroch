@@ -1,12 +1,13 @@
+#ifndef ZN_H
+#define ZN_H
+
+#include <string>
 #include "parcelle.h"
 
-class zn_t : Parcelle_t{
-private:
-    
+class zn_t : public Parcelle_t{
 public:
-    zn_t();
+    zn_t(int, std::string, Polygone_t<int>);
+    void setType();
 };
 
-zn_t::zn_t()
-{
-}
+#endif
