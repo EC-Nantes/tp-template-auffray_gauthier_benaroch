@@ -27,5 +27,7 @@ class Point2D_t {
         void translate(T x, T y);
 };
 
+template<typename T>
+std::ostream& operator<<(std::ostream& s, const Point2D_t<T>& p);
 
 #endif

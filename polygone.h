@@ -26,4 +26,7 @@ class Polygone_t {
         void translate(T x, T y);
 };
 
+template<typename T>
+std::ostream& operator<<(std::ostream& s, const Polygone_t<T>& p);
+
 #endif
