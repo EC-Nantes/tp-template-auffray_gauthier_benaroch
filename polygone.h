@@ -23,6 +23,7 @@ class Polygone_t {
 
         //Méthodes
         void addPoint(Point2D_t<T>&);
+        float getSurface();
         void translate(T x, T y);
 };
 
