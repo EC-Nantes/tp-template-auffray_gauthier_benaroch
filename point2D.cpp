@@ -1,3 +1,4 @@
+#include <iostream>
 #include "point2D.h"
 
 template<typename T>
@@ -23,4 +24,10 @@ template<typename T>
 void Point2D_t<T>::translate(T x, T y){
     this->x += x;
     this->y += y;
+}
+
+template<typename T>
+std::ostream& operator<<(std::ostream& s, const Point2D_t<T>& p){
+    s << "[" << p->x << ";" << p->y << "]" << std::endl;
+    return s;
 }
