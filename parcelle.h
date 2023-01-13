@@ -30,4 +30,11 @@ public:
     virtual void setType(std::string t) = 0;
 };
 
+enum typePacelle {
+    urbaine,
+    aUrbaniser,
+    agricole,
+    naturelleForestiere
+};
+
 #endif
