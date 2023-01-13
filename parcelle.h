@@ -5,7 +5,7 @@
 #include "polygone.h"
 
 class Parcelle_t {
-private:
+protected:
     std::string type;
     int numero;
     std::string proprio;
@@ -14,16 +14,20 @@ private:
 public:
     // constructors
     Parcelle_t(int, std::string, Polygone_t<int>);
-    Parcelle_t(Parcelle_t);
+    Parcelle_t(Parcelle_t&);
 
     // getters
-    int getNumero() {return numero;}
-    std::string getProprio() {return proprio;}
-    float getSurface() {return surface;}
+    int getNumero()             {return numero;}
+    std::string getProprio()    {return proprio;}
+    float getSurface()          {return surface;}
+    Polygone_t<int> getForme()  {return forme;}
+    std::string getType()       {return type;}
+
+    // setters
+    void setNumero(int num) {numero = num;}
+    void setProprio(std::string prop) {proprio = prop;}
+    void setForme(Polygone_t<int> f) {forme = f;}
+    virtual void setType(std::string t) = 0;
 };
-
-Parcelle_t::Parcelle_t(/* args */) {
-}
-
 
 #endif
