@@ -4,7 +4,7 @@
 class Constructible_t {
 public:
     Constructible_t() {}
-    virtual float surfaceConstructible(float f) = 0;
+    virtual float surfaceConstructible() const  = 0;
 };
 Constructible_t::Constructible_t() {}
 #endif

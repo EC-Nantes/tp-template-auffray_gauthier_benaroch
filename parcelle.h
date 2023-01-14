@@ -8,6 +8,7 @@
 class Parcelle_t {
 protected:
     typeParcelle type;
+    std::string typeString;
     int numero;
     std::string proprio;
     Polygone_t<int> forme;
@@ -22,8 +23,9 @@ public:
     int getNumero() const                   {return numero;}
     std::string getProprio() const          {return proprio;}
     Polygone_t<int> getForme()              {return forme;}
-    typeParcelle getType() const            {return type;}
+    std::string getType() const             {return typeString;}
     unsigned int getPconstructible() const  {return pConstructible;}
+    float getSurface() const                {return surface;}
 
     // setters
     void setNumero(const int num)           {numero = num;}
@@ -32,7 +34,7 @@ public:
     virtual void setType() = 0;
 
     // friend
-    friend std::ostream& operator<< (std::ostream&, Parcelle_t &);
+    friend std::ostream& operator<<(std::ostream&, const Parcelle_t &);
 };
 
 enum typeParcelle {

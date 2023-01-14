@@ -18,12 +18,12 @@ void Parcelle_t::setForme(Polygone_t<int> f) {
     surface = f.getSurface();
 }
 
-std::ostream& operator<<(std::ostream& o, Parcelle_t & parc) {
+std::ostream& operator<<(std::ostream& o, const Parcelle_t & parc) {
     o << "Parcelle n°" << parc.getNumero() << " :\n\t";
     o << "Type : " << parc.getType() << "\n\t";
-    o << "Polygone : " << parc.getForme() << "\n\t";
+    o << "Polygone : " << parc.forme << "\n\t";
     o << "Propriétaire : " << parc.getProprio() << "\n\t";
-    o << "Surface : " << parc.getForme().getSurface() << "\n\t";
-    o << "Constructible : " << parc.getPconstructible() << std::endl;
+    o << "Surface : " << parc.getSurface() << "\n\t";
+    o << "Constructible : " << parc.getPconstructible() << " %" << std::endl;
     return o;
 }
