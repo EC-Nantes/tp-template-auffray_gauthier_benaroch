@@ -1,3 +1,11 @@
 TP_PLU_Note.exe
 .vscode/
 .vscode/**
+main.o
+parcelle.o
+point2D.o
+polygone.o
+za.o
+zau.o
+zn.o
+zu.o
