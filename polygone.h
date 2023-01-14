@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include <algorithm>
 #include "point2D.h"
 
 template<typename T>
@@ -31,9 +32,12 @@ class Polygone_t {
 template<typename T>
 Polygone_t<T>::Polygone_t() {
     Point2D_t<T> point0;
-    for (int i = 0; i < 3; i++) {
-        this->sommets.push_back(point0);
-    }
+    // for (int i = 0; i < 3; i++) {
+    //     this->sommets.push_back(point0);
+    // }
+    // [JEAN] : ce n'est pas la fonction push back qu'il faut utilisé ici mais la fonction insert
+    //          je ne sais pas pourquoi mais push back cré des problèmes
+    this->sommets.insert(this->sommets.begin(), 3,  point0);
 }
 
 template<typename T>
@@ -41,7 +45,10 @@ Polygone_t<T>::Polygone_t(std::vector<Point2D_t<T>> listeSommets) {
     // typename std::vector<Point2D_t<T>> it;
     // [JEAN] : problème dans la déclaration de l'iterator
     typename std::vector<Point2D_t<T>>::iterator it;
-    for(it = this->listeSommets.begin(); it != this->listeSommets.end(); it++ ) {
+    // for(it = this->listeSommets.begin(); it != this->listeSommets.end(); it++ ) {
+    // [JEAN] : la tu met this-> alors que tu essai d'atteaindre le liste de sommet reçu en paramètre,
+    //          pas la liste de sommet de la classe courante
+    for(it = listeSommets.begin(); it != listeSommets.end(); it++) {
         this->sommets.push_back(*it);
         //std::cout<< *it << std::endl;  //test
     }

@@ -30,9 +30,9 @@ class Point2D_t {
         //Méthodes
         void translate(T x, T y);
 
-        Point2D_t& operator=(Point2D_t other) {
-            std::swap(x, other.getX());
-            std::swap(y, other.getY());
+        Point2D_t<T>& operator=(Point2D_t<T> other) {
+            x = other.getX();
+            y = other.getY();
             return *this;
         }
 };
@@ -67,7 +67,7 @@ void Point2D_t<T>::translate(T x, T y){
 
 template<typename T>
 std::ostream& operator<<(std::ostream& s, const Point2D_t<T>& p){
-    s << "[" << p.getX() << ";" << p.getY() << "]" << std::endl;
+    s << "[" << p.getX() << ";" << p.getY() << "]";
     return s;
 }
 
