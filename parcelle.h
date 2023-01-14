@@ -7,7 +7,7 @@
 
 class Parcelle_t {
 protected:
-    typeParcelle type;
+    unsigned int type;
     std::string typeString;
     int numero;
     std::string proprio;
@@ -22,7 +22,7 @@ public:
     // getters
     int getNumero() const                   {return numero;}
     std::string getProprio() const          {return proprio;}
-    Polygone_t<int> getForme()              {return forme;}
+    Polygone_t<int>& getForme()             {return forme;}
     std::string getType() const             {return typeString;}
     unsigned int getPconstructible() const  {return pConstructible;}
     float getSurface() const                {return surface;}
