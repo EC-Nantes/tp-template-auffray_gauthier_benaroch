@@ -1,7 +1,9 @@
 #include "zu.h"
 #include <iostream>
+#include <cstdlib>
 
 zu_t::zu_t(int num, std::string p, Polygone_t<int> f, float surfaceConstruite) : Parcelle_t(num, p, f) {
+    pConstructible = (rand() % 100) + 1;
     if(surfaceConstruite > forme.getSurface()) {
         std::cerr << "Tentative de creation de la parcelle de M/Mme : " << p;
         std::cerr << "\nLa surface construite de la parcelle depasse la surface total de la parcelle";
@@ -37,10 +39,10 @@ void zu_t::setSurfaceConstruite(const float s) {
 }
 
 std::ostream& operator<<(std::ostream& o, const zu_t& parc) {
-    o << "Parcelle n°" << parc.getNumero() << " :\n\t";
+    o << "Parcelle num " << parc.getNumero() << " :\n\t";
     o << "Type : " << parc.getType() << "\n\t";
     o << "Polygone : " << parc.forme << "\n\t";
-    o << "Propriétaire : " << parc.getProprio() << "\n\t";
+    o << "Proprietaire : " << parc.getProprio() << "\n\t";
     o << "Surface : " << parc.getSurface() << "\n\t";
     o << "Constructible : " << parc.getPconstructible() << " %\n\t";
     o << "Surface construite : " << parc.getSurfaceConstruite() << "\n\t";

@@ -17,10 +17,10 @@ void za_t::setType() {
 }
 
 std::ostream& operator<<(std::ostream& o, const za_t& parc) {
-    o << "Parcelle n°" << parc.getNumero() << " :\n\t";
+    o << "Parcelle num " << parc.getNumero() << " :\n\t";
     o << "Type : " << parc.getType() << "\n\t";
     o << "Polygone : " << parc.forme << "\n\t";
-    o << "Propriétaire : " << parc.getProprio() << "\n\t";
+    o << "Proprietaire : " << parc.getProprio() << "\n\t";
     o << "Type de culture : " << parc.getTypeCulture() << "\n\t";
     o << "Surface : " << parc.getSurface() << "\n\t";
     o << "Constructible : " << parc.getPconstructible() << " % batiment agricole uniquement";
