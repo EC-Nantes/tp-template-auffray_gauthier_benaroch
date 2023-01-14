@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include <iterator>
 
 template<typename T>
 class Point2D_t {

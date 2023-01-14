@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <iterator>
 #include "point2D.h"
 
 template<typename T>
@@ -18,7 +19,7 @@ class Polygone_t {
         Polygone_t(Polygone_t<T>& poly);
 
         //Getteurs
-        std::vector<Point2D_t<T>> getSommets() const {return this->sommets;}
+        std::vector<Point2D_t<T>> getSommets() const {return sommets;}
 
         //Setteurs
         void setSommets(std::vector<Point2D_t<T>> listeSommets) {std::swap(this->sommets, listeSommets);}
@@ -35,8 +36,7 @@ Polygone_t<T>::Polygone_t() {
     // for (int i = 0; i < 3; i++) {
     //     this->sommets.push_back(point0);
     // }
-    // [JEAN] : ce n'est pas la fonction push back qu'il faut utilisé ici mais la fonction insert
-    //          je ne sais pas pourquoi mais push back cré des problèmes
+    // [JEAN] : c'est beaucoup plus simple d'utiliser la fonction insert ici
     this->sommets.insert(this->sommets.begin(), 3,  point0);
 }
 
@@ -63,17 +63,21 @@ Polygone_t<T>::Polygone_t(Polygone_t<T>& poly) {
 
 template<typename T>
 void Polygone_t<T>::addPoint(Point2D_t<T>& p) {
-    for (int i = 0; i < 3; i++) {
-        this->sommets.push_back(p);
-    }
+    // for (int i = 0; i < 3; i++) {
+    //     this->sommets.push_back(p);
+    // }
+    // [JEAN] : là tu l'ajoute 3 fois le point !!
+    this->sommets.push_back(p);
 }
 
 template<typename T>       
 void Polygone_t<T>::translate(T x, T y) {
-    typename std::vector<Point2D_t<T>> it;
+    typename std::vector<Point2D_t<T>>::iterator it;
     for(it = this->sommets.begin(); it != this->sommets.end(); it++ ) {
-        it->x += x;
-        it->y += y;
+        // it->x += x;
+        // it->y += y;
+        // [JEAN] : autant utiliser la fonction translate du point
+        it->translate(x, y);
     }
 }
 
@@ -101,11 +105,13 @@ template<typename T>
 std::ostream& operator<<(std::ostream& s, const Polygone_t<T>& p){
     // typename std::vector<Point2D_t<T>> it; 
     // [JEAN] : idem, problem de déclaration d'iterateur
+    std::vector<Point2D_t<T>> vect = p.getSommets();
     typename std::vector<Point2D_t<T>>::iterator it;
     s << "Polygone :";
     // for (it = p->sommets.begin(); it != p->sommets.end(); it++) {
     // [JEAN] : p n'est pas un pointeur, c'est une reférence donc pas de "->"
-    for (it = p.getSommets().begin(); it != p.getSommets().end(); it++) {
+    //          je ne sais pas pourquoi mais obligé de passer par un vect fix.
+    for (it = vect.begin(); it != vect.end(); it++) {
         // s << " " << it;
         // [JEAN] : là tu essai directment de print l'itérator, or toi tu n'as pas déffinit l'opérateur "<<"
         //          pour des itérateurs mais pour des vecteurs donc tu dois déréférencer
