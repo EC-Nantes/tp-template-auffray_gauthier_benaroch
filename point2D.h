@@ -1,6 +1,7 @@
 #ifndef POINT2D_H
 #define POINT2D_H
 
+#include <iostream>
 #include <vector>
 
 template<typename T>
@@ -13,7 +14,10 @@ class Point2D_t {
         //Constructeurs
         Point2D_t();
         Point2D_t(T x, T y);
-        Point2D_t(Point2D_t& p);
+        // Point2D_t(Point2D_t& p);
+        // [JEAN] : erreur dans la déclaration du constructeur par recopie
+        //          pas mal d'erreur dans le compilo à cause de ça
+        Point2D_t(const Point2D_t<T>& p);
 
         //Getteurs
         T getX() const { return this->x;}
@@ -25,6 +29,12 @@ class Point2D_t {
 
         //Méthodes
         void translate(T x, T y);
+
+        Point2D_t& operator=(Point2D_t other) {
+            std::swap(x, other.getX());
+            std::swap(y, other.getY());
+            return *this;
+        }
 };
 
 template<typename T>
@@ -40,9 +50,13 @@ Point2D_t<T>::Point2D_t(T x, T y){
 }
 
 template<typename T>
-Point2D_t<T>::Point2D_t(Point2D_t<T>& p){
-    this->x = p->x;
-    this->y = p->y;
+Point2D_t<T>::Point2D_t(const Point2D_t<T>& p){
+    // this->x = p->x;
+    // this->y = p->y;
+    // [JEAN] : p est une référence pas un pointeur donc pas de "->"
+    this->x = p.getX();
+    this->y = p.getY();
+
 }
 
 template<typename T>
