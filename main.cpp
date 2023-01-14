@@ -3,6 +3,10 @@
 
 #include "point2D.h"
 #include "polygone.h"
+#include "zu.h"
+#include "zau.h"
+#include "za.h"
+#include "zn.h"
 
 int main() {
 
