@@ -15,6 +15,6 @@ int main() {
 
     //Test polygone
     Polygone_t<int> pol1;
-    //std::cout << pol1 << std::endl;
+    std::cout << pol1 << std::endl;
 
 }
