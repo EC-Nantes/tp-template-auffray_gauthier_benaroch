@@ -2,8 +2,8 @@ all : TP_PLU_Note
 
 rebuild : clean all
 
-TP_PLU_Note : main.o point2D.o polygone.o parcelle.o zu.o zau.o za.o zn.o
-	g++ -o TP_PLU_Note main.o point2D.o polygone.o parcelle.o zu.o zau.o za.o zn.o
+TP_PLU_Note : main.o point2D.o polygone.o parcelle.o zu.o zau.o za.o zn.o carte.o
+	g++ -o TP_PLU_Note main.o point2D.o polygone.o parcelle.o zu.o zau.o za.o zn.o carte.o
 
 main.o : main.cpp 
 	g++ -o main.o -c main.cpp
@@ -28,6 +28,9 @@ za.o : za.cpp
 
 zn.o : zn.cpp
 	g++ -o zn.o -c zn.cpp
+
+carte.o : carte.cpp
+	g++ -o carte.o -c carte.cpp
 
 clean :
 	del *.o

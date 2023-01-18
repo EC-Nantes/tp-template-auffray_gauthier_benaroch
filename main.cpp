@@ -7,6 +7,7 @@
 #include "zau.h"
 #include "za.h"
 #include "zn.h"
+#include "carte.h"
 
 int main() {
 
@@ -72,6 +73,8 @@ int main() {
     pol_parc.translate(-15, 0);
     zn_t ZN1(4, "M. ROUX", pol_parc);
     std::cout << ZN1 << std::endl;
+
+    Carte_t carte;
 
     return 0;
 }
