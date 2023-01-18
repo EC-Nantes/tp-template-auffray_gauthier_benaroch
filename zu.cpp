@@ -2,8 +2,13 @@
 #include <iostream>
 #include <cstdlib>
 
-zu_t::zu_t(int num, std::string p, Polygone_t<int> f, float surfaceConstruite) : Parcelle_t(num, p, f) {
-    pConstructible = (rand() % 100) + 1;
+zu_t::zu_t(int num, std::string p, Polygone_t<int> f, float surfaceConstruite, int pCons=0) : Parcelle_t(num, p, f) {
+    if (pCons == 0) {
+        pConstructible = (rand() % 100) + 1;
+    }
+    else {
+        pConstructible = pCons;
+    }
     if(surfaceConstruite > forme.getSurface()) {
         std::cerr << "Tentative de creation de la parcelle de M/Mme : " << p;
         std::cerr << "\nLa surface construite de la parcelle depasse la surface total de la parcelle";

@@ -10,7 +10,7 @@ class zu_t : public Parcelle_t, public Constructible_t {
 private:
     float surfaceConstruite;
 public:
-    zu_t(int, std::string, Polygone_t<int>, float);                 // constructor
+    zu_t(int, std::string, Polygone_t<int>, float, int=0);                 // constructor
     void setType();                                                 // setters
     void setSurfaceConstruite(const float f);
     float getSurfaceConstruite() const {return surfaceConstruite;}  // getters
