@@ -8,6 +8,7 @@ za_t::za_t(int num, std::string p, Polygone_t<int> f, std::string tc) : Parcelle
     else {
         pConstructible = 10;
     }
+    typeCulture = tc;
     this->setType();
 }
 

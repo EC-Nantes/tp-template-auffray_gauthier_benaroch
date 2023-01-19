@@ -2,7 +2,7 @@
 #include <iostream>
 #include <cstdlib>
 
-zu_t::zu_t(int num, std::string p, Polygone_t<int> f, float surfaceConstruite, int pCons=0) : Parcelle_t(num, p, f) {
+zu_t::zu_t(int num, std::string p, Polygone_t<int> f, float surfaceConstruite, int pCons) : Parcelle_t(num, p, f) {
     if (pCons == 0) {
         pConstructible = (rand() % 100) + 1;
     }

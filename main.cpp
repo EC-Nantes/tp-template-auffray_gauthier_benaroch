@@ -74,7 +74,9 @@ int main() {
     zn_t ZN1(4, "M. ROUX", pol_parc);
     std::cout << ZN1 << std::endl;
 
-    Carte_t carte;
+    Carte_t carte("Parcelles_short.txt");
+    Carte_t carte1("Parcelles.txt");
+    carte.saveMap("testSave.txt");
 
     return 0;
 }
