@@ -75,8 +75,8 @@ int main() {
     std::cout << ZN1 << std::endl;
 
     Carte_t carte("Parcelles_short.txt");
-    Carte_t carte1("Parcelles.txt");
-    carte.saveMap("testSave.txt");
+    //Carte_t carte1("Parcelles.txt");
+    //carte.saveMap("testSave.txt");
 
     return 0;
 }
