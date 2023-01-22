@@ -16,7 +16,7 @@ std::ostream& operator<<(std::ostream& o, const zn_t& parc) {
     o << "Polygone : " << parc.forme << "\n\t";
     o << "Proprietaire : " << parc.getProprio() << "\n\t";
     o << "Surface : " << parc.getSurface() << "\n\t";
-    o << "Constructible : " << parc.getPconstructible() << " Non constructible !";
+    o << "Constructible : " << parc.getPconstructible() << " % Non constructible !";
     o << std::endl;
     return o;
 }

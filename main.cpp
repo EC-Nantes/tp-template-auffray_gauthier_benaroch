@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <exception>
 
 #include "point2D.h"
 #include "polygone.h"
@@ -7,6 +8,9 @@
 #include "zau.h"
 #include "za.h"
 #include "zn.h"
+#include "carte.h"
+#include "exceptionSurface.h"
+
 
 int main() {
 
@@ -47,7 +51,7 @@ int main() {
     std::cout << pol1 << std::endl;
 
     //Test parcelle
-    Point2D_t<int> haut_d(1000, 1000);
+    Point2D_t<int> haut_d(-10, -10);
     Point2D_t<int> haut_g(-5, 5);
     Point2D_t<int> bas_g(-5, -5);
     Point2D_t<int> bas_d(5, -5);
@@ -58,20 +62,27 @@ int main() {
     pol_parc.addPoint(bas_g);
     pol_parc.addPoint(bas_d);
 
-    zu_t ZU1(1, "M. GAUTHIER", pol_parc, 35.6);
-    std::cout << ZU1 << std::endl;
+    try {
+        zu_t ZU1(1, "M. GAUTHIER", pol_parc, 35.6);
+        pol_parc.translate(15, 0);
+        zau_t ZAU1(2, "M. AUFFRAY", pol_parc);
+        pol_parc.translate(0, -15);
+        za_t ZA1(3, "M. BENAROCH", pol_parc, "ble");
+        pol_parc.translate(-15, 0);
+        zn_t ZN1(4, "M. ROUX", pol_parc);
 
-    pol_parc.translate(15, 0);
-    zau_t ZAU1(2, "M. AUFFRAY", pol_parc);
-    std::cout << ZAU1 << std::endl;
+        // std::cout << ZU1 << std::endl;
+        // std::cout << ZAU1 << std::endl;
+        // std::cout << ZA1 << std::endl;
+        // std::cout << ZN1 << std::endl;
+    }
+    catch(const std::exception& e) {
+        std::cerr << e.what() << '\n';
+    }
+    
 
-    pol_parc.translate(0, -15);
-    za_t ZA1(3, "M. BENAROCH", pol_parc, "ble");
-    std::cout << ZA1 << std::endl;
-
-    pol_parc.translate(-15, 0);
-    zn_t ZN1(4, "M. ROUX", pol_parc);
-    std::cout << ZN1 << std::endl;
-
+    //Teste carte
+    Carte_t carte("..\\Parcelles_short.txt");
+    carte.save();
     return 0;
 }

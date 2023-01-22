@@ -11,6 +11,7 @@ template<typename T>
 class Polygone_t {
     private:
         std::vector<Point2D_t<T>> sommets;
+        // Point2D_t<T> findPointDownLeft();
 
     public:
         //Constructeurs
@@ -100,6 +101,15 @@ float Polygone_t<T>::getSurface() {
     }
     return surface;
 }
+
+// template<typename T>
+// Point2D_t<T> Polygone_t<T>::findPointDownLeft() {
+//     Point2D_t<T> to_return;
+//      = sommets[0];
+//     for(int i = 0; i < sommets.size(); i++) {
+//         to_return.
+//     }
+// }
 
 template<typename T>
 std::ostream& operator<<(std::ostream& s, const Polygone_t<T>& p){

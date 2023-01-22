@@ -5,6 +5,11 @@ Parcelle_t::Parcelle_t(int num, std::string p, Polygone_t<int> f) {
     proprio = p;
     forme.setSommets(f.getSommets());
     surface = f.getSurface();
+    if(surface <= 0) {
+        ExceptionSurface_t e;
+        throw e;
+    }
+    // TO DO : Exception si forme pas correcte
 }
 
 Parcelle_t::Parcelle_t(Parcelle_t& parc) {

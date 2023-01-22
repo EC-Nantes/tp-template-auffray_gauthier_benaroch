@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include "polygone.h"
+#include "exceptionSurface.h"
 
 class Parcelle_t {
 protected:
