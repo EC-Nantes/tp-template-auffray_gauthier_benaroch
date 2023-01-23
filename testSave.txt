@@ -1,0 +1,8 @@
+ZU 17 Martin 55 4200
+Polygone : [0;30] [60;100] [0;100]
+ZAU 25 Robert 35
+Polygone : [0;30] [80;30] [80;100] [60;100]
+ZA 42 Babin
+Polygone : [0;0] [80;0] [80;30] [0;30]
+ZN 54 Savard
+Polygone : [80;0] [100;0] [100;100] [80;100]

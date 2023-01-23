@@ -76,7 +76,7 @@ int main() {
 
     Carte_t carte("Parcelles_short.txt");
     //Carte_t carte1("Parcelles.txt");
-    //carte.saveMap("testSave.txt");
+    carte.saveMap("testSave.txt");
 
     return 0;
 }

@@ -122,7 +122,5 @@ std::ostream& operator<<(std::ostream& s, const Polygone_t<T>& p){
     return s;
 }
 
-// template<typename T>
-// std::ostream& operator<<(std::ostream& s, const Polygone_t<T>& p);
 
 #endif

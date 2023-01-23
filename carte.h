@@ -18,6 +18,6 @@ class Carte_t : std::list<Parcelle_t*> {
 
         //Méthodes
         int getSurfaceTotal();
-        void saveMap();
+        void saveMap(std::string path);
 };
 #endif
