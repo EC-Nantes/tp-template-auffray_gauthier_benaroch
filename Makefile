@@ -5,7 +5,7 @@ rebuild : clean all
 TP_PLU_Note : main.o point2D.o polygone.o parcelle.o zu.o zau.o za.o zn.o carte.o
 	g++ -o TP_PLU_Note main.o point2D.o polygone.o parcelle.o zu.o zau.o za.o zn.o carte.o
 
-main.o : main.cpp 
+main.o : main.cpp point2D.h polygone.h
 	g++ -o main.o -c main.cpp
 
 point2D.o : point2D.cpp
