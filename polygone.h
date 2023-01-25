@@ -110,6 +110,7 @@ float Polygone_t<T>::getSurface() {
         // [JEAN] : tu n'as pas accès directement au attribut d'un point2D, tu dois passer par les gets
         surface += (it->getX() * it_next->getY()) - (it->getY() * it_next->getX()); //Produit vectoriel de 2 points
     }
+    surface = surface / 2;
     return surface;
 }
 
