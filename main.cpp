@@ -93,7 +93,7 @@ int main() {
     //Teste carte
     std::cout << "[Test de la carte]\n";
     try {
-        Carte_t carte("..\\Parcelles_short.txt");
+        Carte_t carte("Parcelles_short.txt");
         std::cout << "Surface total : " << carte.getSurfaceTotal() << "\n";
         Polygone_t<int> pol_parc(points);
         zu_t* ZU2 = new zu_t(6, "M. PROPRIO", pol_parc, 12.54);
