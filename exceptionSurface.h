@@ -11,17 +11,15 @@ public:
 };
 
 class exceptionPolyCroise_t : public std::exception {
-private:
-    /* data */
 public:
     exceptionPolyCroise_t() : exception() {};
-    const char* what() const noexcept {return "Exception : Polynome croise !\n";}
+    const char* what() const noexcept {return "Exception : Polygone croise !\n";}
 };
 
-class exceptionPolyOrdre : public std::exception {
+class exceptionPolyOrdre_t : public std::exception {
 public:
-    exceptionPolyOrdre() : exception() {};
-    const char* what() const noexcept {return "Exception : Polynome avec les points dans mauvaise ordre !\n";}
+    exceptionPolyOrdre_t() : exception() {};
+    const char* what() const noexcept {return "Exception : Polygone avec les points dans mauvaise ordre !\n";}
 };
 
 #endif

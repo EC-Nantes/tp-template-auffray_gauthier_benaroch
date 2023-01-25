@@ -8,6 +8,7 @@ class zn_t : public Parcelle_t{
 public:
     zn_t(int, std::string, Polygone_t<int>);                      // constructor
     void setType();                                               // getter
+    std::string print() const;
     friend std::ostream& operator<<(std::ostream&, const zn_t&);  // friend
 };
 

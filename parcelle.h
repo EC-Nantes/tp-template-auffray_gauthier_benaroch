@@ -2,6 +2,7 @@
 #define PARCELLE_H
 
 #include <iostream>
+#include <fstream>
 #include <string>
 #include "polygone.h"
 #include "exceptionSurface.h"
@@ -27,6 +28,7 @@ public:
     std::string getType() const             {return typeString;}
     unsigned int getPconstructible() const  {return pConstructible;}
     float getSurface() const                {return surface;}
+    virtual std::string print() const = 0;
 
     // setters
     void setNumero(const int num)           {numero = num;}

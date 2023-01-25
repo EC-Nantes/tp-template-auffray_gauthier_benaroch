@@ -1,11 +1,12 @@
 #include "carte.h"
 
 Carte_t::Carte_t(std::string path) {
+    std::cout << "Creation d'une carte avec les surfaces suivantes : \n";
     surfaceTotal = 0;
     std::ifstream file(path);
     if(file.is_open()) {
         std::string line;
-        while (std::getline(file, line)) {
+        while(std::getline(file, line)) {
             // gestion des infos de la parcelles
             std::vector<std::string> tokens;
             std::vector<std::string> coordonees;
@@ -26,24 +27,25 @@ Carte_t::Carte_t(std::string path) {
 
             // remplissage de la liste
             if(tokens[0] == "ZU") {
-                zu_t zu(std::stoi(tokens[1]), tokens[2], poly, std::stof(tokens[4]));
-                std::cout << zu << "\n";
-                this->push_back(&zu);
+
+                zu_t* zu = new zu_t(std::stoi(tokens[1]), tokens[2], poly, std::stof(tokens[4]), std::stoi(tokens[3]));
+                std::cout << (*zu) << "\n";
+                this->push_back(zu);
             }
             else if(tokens[0] == "ZAU") {
-                zau_t zau(std::stoi(tokens[1]), tokens[2], poly);
-                std::cout << zau << "\n";
-                this->push_back(&zau);
+                zau_t* zau = new zau_t(std::stoi(tokens[1]), tokens[2], poly, std::stoi(tokens[3]));
+                std::cout << *zau << "\n";
+                this->push_back(zau);
             }
             else if(tokens[0] == "ZA") {
-                za_t za(std::stoi(tokens[1]), tokens[2], poly, tokens[3]);
-                std::cout << za << "\n";
-                this->push_back(&za);
+                za_t* za = new za_t(std::stoi(tokens[1]), tokens[2], poly, tokens[3]);
+                std::cout << *za << "\n";
+                this->push_back(za);
             }
             else if(tokens[0] == "ZN") {
-                zn_t zn(std::stoi(tokens[1]), tokens[2], poly);
-                std::cout << zn << "\n";
-                this->push_back(&zn);
+                zn_t* zn = new zn_t(std::stoi(tokens[1]), tokens[2], poly);
+                std::cout << *zn << "\n";
+                this->push_back(zn);
             }
             else {
                 std::cerr << "Premier token de la ligne different de ZU, ZAU, ZA ou ZN\n";
@@ -57,6 +59,11 @@ Carte_t::Carte_t(std::string path) {
 }
 
 Carte_t::~Carte_t() {
+    for(auto& pItem : (*this)){  
+        delete pItem;
+    }
+    
+    this->clear();
 }
 
 std::vector<std::string> Carte_t::split(std::string s, std::string delimiter) {
@@ -85,14 +92,20 @@ Point2D_t<int> Carte_t::parsePoint(std::string token) {
 void Carte_t::save() {
     std::ofstream file("save_parc.txt");
     if(file.is_open()) {
-        Carte_t::iterator it;
+        std::list<Parcelle_t*>::iterator it;
         for(it = this->begin(); it != this->end(); it++) {
-            std::cout << (*it)->getType() << " " << (*it)->getNumero() << "\n";
-            std::cout << (*it)->getForme() << "\n";
-        }
+            file << (*it)->print();
+            file << (*it)->getForme();
+            file << "\n";
+        }   
         file.close();
     }
     else {
         std::cerr << "Unable to open file (in save function)\n";
     }
+}
+
+void Carte_t::add(Parcelle_t* parc) {
+    this->push_back(parc);
+    surfaceTotal += parc->getSurface();
 }

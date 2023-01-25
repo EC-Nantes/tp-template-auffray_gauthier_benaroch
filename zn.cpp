@@ -10,6 +10,18 @@ void zn_t::setType() {
     typeString = "ZN";
 }
 
+std::string zn_t::print() const {
+    std::string to_return;
+    std::to_string(pConstructible);
+    to_return += typeString;
+    to_return += " ";
+    to_return += std::to_string(numero);
+    to_return += " ";
+    to_return += proprio;
+    to_return += "\n";
+    return to_return;
+}
+
 std::ostream& operator<<(std::ostream& o, const zn_t& parc) {
     o << "Parcelle num " << parc.getNumero() << " :\n\t";
     o << "Type : " << parc.getType() << "\n\t";

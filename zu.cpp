@@ -1,9 +1,21 @@
 #include "zu.h"
-#include <iostream>
-#include <cstdlib>
 
 zu_t::zu_t(int num, std::string p, Polygone_t<int> f, float surfaceConstruite) : Parcelle_t(num, p, f) {
     pConstructible = (rand() % 100) + 1;
+    if(surfaceConstruite > forme.getSurface()) {
+        std::cerr << "Tentative de creation de la parcelle de M/Mme : " << p;
+        std::cerr << "\nLa surface construite de la parcelle depasse la surface total de la parcelle";
+        std::cerr << "\nSurface construite initialisee sur toute la parcelle" << std::endl;
+        this->surfaceConstruite = forme.getSurface();
+    }
+    else {
+        this->surfaceConstruite = surfaceConstruite;
+    }
+    this->setType();
+}
+
+zu_t::zu_t(int num, std::string p, Polygone_t<int> f, float surfaceConstruite, int pConstruct) : Parcelle_t(num, p, f) {
+    pConstructible = pConstruct;
     if(surfaceConstruite > forme.getSurface()) {
         std::cerr << "Tentative de creation de la parcelle de M/Mme : " << p;
         std::cerr << "\nLa surface construite de la parcelle depasse la surface total de la parcelle";
@@ -36,6 +48,22 @@ void zu_t::setSurfaceConstruite(const float s) {
     else {
         this->surfaceConstruite = s;
     }
+}
+
+std::string zu_t::print() const {
+    std::string to_return;
+    std::to_string(pConstructible);
+    to_return += typeString;
+    to_return += " ";
+    to_return += std::to_string(numero);
+    to_return += " ";
+    to_return += proprio;
+    to_return += " ";
+    to_return += std::to_string(pConstructible);
+    to_return += " ";
+    to_return += std::to_string(surfaceConstruite);
+    to_return += "\n";
+    return to_return;
 }
 
 std::ostream& operator<<(std::ostream& o, const zu_t& parc) {

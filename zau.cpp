@@ -7,6 +7,11 @@ zau_t::zau_t(int num, std::string p, Polygone_t<int> f) : Parcelle_t(num, p, f) 
     this->setType();
 }
 
+zau_t::zau_t(int num, std::string p, Polygone_t<int> f, int pConstruct) : Parcelle_t(num, p, f) {
+    pConstructible = pConstruct;
+    this->setType();
+}
+
 void zau_t::setType() {
     type = typeParcelle::aUrbaniser;
     typeString = "ZAU";
@@ -14,6 +19,20 @@ void zau_t::setType() {
 
 float zau_t::surfaceConstructible() const {
     return (this->getSurface() * pConstructible) / 100;
+}
+
+std::string zau_t::print() const {
+    std::string to_return;
+    std::to_string(pConstructible);
+    to_return += typeString;
+    to_return += " ";
+    to_return += std::to_string(numero);
+    to_return += " ";
+    to_return += proprio;
+    to_return += " ";
+    to_return += std::to_string(pConstructible);
+    to_return += "\n";
+    return to_return;
 }
 
 std::ostream& operator<<(std::ostream& o, const zau_t& parc) {

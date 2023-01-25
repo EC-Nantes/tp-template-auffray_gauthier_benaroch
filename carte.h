@@ -2,6 +2,7 @@
 #define CARTE_H
 
 #include <fstream>
+#include <vector>
 #include <iostream>
 #include <list>
 #include <string>
@@ -16,6 +17,7 @@
 
 class Carte_t : std::list<Parcelle_t*> {
 private:
+    //std::list<Parcelle_t*> parcs;
     float surfaceTotal;
     std::vector<std::string> split(std::string s, std::string delimiter);
     Point2D_t<int> parsePoint(std::string token);
@@ -28,6 +30,7 @@ public:
     // getters
     float getSurfaceTotal() {return surfaceTotal;}
     void save();
+    void add(Parcelle_t*);
 };
 
 #endif

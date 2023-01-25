@@ -6,11 +6,14 @@
 #include <algorithm>
 #include <iterator>
 #include "point2D.h"
+#include "exceptionSurface.h"
 
 template<typename T>
 class Polygone_t {
     private:
         std::vector<Point2D_t<T>> sommets;
+        bool check_croise();
+        bool check_segment(Point2D_t<T>, Point2D_t<T>, Point2D_t<T>, Point2D_t<T>);
         // Point2D_t<T> findPointDownLeft();
 
     public:
@@ -53,6 +56,10 @@ Polygone_t<T>::Polygone_t(std::vector<Point2D_t<T>> listeSommets) {
         this->sommets.push_back(*it);
         //std::cout<< *it << std::endl;  //test
     }
+    if(check_croise()) {
+        exceptionPolyCroise_t e;
+        throw e;
+    }
 }
 
 template<typename T>
@@ -69,6 +76,10 @@ void Polygone_t<T>::addPoint(Point2D_t<T>& p) {
     // }
     // [JEAN] : là tu l'ajoute 3 fois le point !!
     this->sommets.push_back(p);
+    if(check_croise()) {
+        exceptionPolyCroise_t e;
+        throw e;
+    }
 }
 
 template<typename T>       
@@ -102,14 +113,65 @@ float Polygone_t<T>::getSurface() {
     return surface;
 }
 
-// template<typename T>
-// Point2D_t<T> Polygone_t<T>::findPointDownLeft() {
-//     Point2D_t<T> to_return;
-//      = sommets[0];
-//     for(int i = 0; i < sommets.size(); i++) {
-//         to_return.
-//     }
-// }
+template<typename T>
+bool Polygone_t<T>::check_croise() {
+    bool to_return = false;
+    for(int i = 0; i < (sommets.size()-1); i++) {
+        if(to_return) {
+            i = sommets.size();
+        } 
+        else {
+            for(int j = i; j < (sommets.size()-1); j++) {
+                if(to_return) {
+                    j = sommets.size();
+                    i = sommets.size();
+                }
+                else {
+                    if((j + 2) >= sommets.size()) {
+                        to_return = check_segment(sommets[i], sommets[i+1], sommets[j+1], sommets[0]);
+                    }
+                    else {
+                        to_return = check_segment(sommets[i], sommets[i+1], sommets[j+1], sommets[j+2]);
+                    }
+                }
+            }
+        }
+    }
+    return to_return;
+}
+
+template<typename T>
+bool Polygone_t<T>::check_segment(Point2D_t<T> A, Point2D_t<T> B, Point2D_t<T> C, Point2D_t<T> D) {
+    bool to_return = false;
+    T Ax = A.getX();
+    T Ay = A.getY();
+    T Bx = B.getX();
+    T By = B.getY();
+    T Cx = C.getX();
+    T Cy = C.getY();
+    T Dx = D.getX();
+    T Dy = D.getY();
+    float r_num;
+    float r_denum;
+    float s_num;
+    float s_denum;
+    float r;
+    float s;
+    r_num = (Ay-Cy) * (Dx-Cx) - (Ax-Cx) * (Dy-Cy);
+    r_denum = (Bx-Ax) * (Dy-Cy) - (By-Ay) * (Dx-Cx);
+    r = r_num / r_denum;
+    s_num = (Ay-Cy) * (Bx-Ax) - (Ax-Cx) * (By-Ay);
+    s_denum = (Bx-Ax) * (Dy-Cy) - (By-Ay) * (Dx-Cx);
+    s = s_num / s_denum;
+    if(0 < r && r < 1 && 0 < s && s < 1) {
+        to_return = true;
+    }
+    else {
+        to_return = false;
+    }
+    return to_return;
+}
+
 
 template<typename T>
 std::ostream& operator<<(std::ostream& s, const Polygone_t<T>& p){
@@ -117,7 +179,7 @@ std::ostream& operator<<(std::ostream& s, const Polygone_t<T>& p){
     // [JEAN] : idem, problem de déclaration d'iterateur
     std::vector<Point2D_t<T>> vect = p.getSommets();
     typename std::vector<Point2D_t<T>>::iterator it;
-    s << "Polygone :";
+    //s << "Polygone :";
     // for (it = p->sommets.begin(); it != p->sommets.end(); it++) {
     // [JEAN] : p n'est pas un pointeur, c'est une reférence donc pas de "->"
     //          je ne sais pas pourquoi mais obligé de passer par un vect fix.
@@ -125,12 +187,9 @@ std::ostream& operator<<(std::ostream& s, const Polygone_t<T>& p){
         // s << " " << it;
         // [JEAN] : là tu essai directment de print l'itérator, or toi tu n'as pas déffinit l'opérateur "<<"
         //          pour des itérateurs mais pour des vecteurs donc tu dois déréférencer
-        s << " " << *it;
+        s << *it << " ";
     }
     return s;
 }
-
-// template<typename T>
-// std::ostream& operator<<(std::ostream& s, const Polygone_t<T>& p);
 
 #endif
